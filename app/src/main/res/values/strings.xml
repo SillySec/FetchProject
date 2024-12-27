@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">FetchProject</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <!-- Error screen -->
+    <string name="error_screen_title">Error!</string>
+
+    <string name="error_description_db">Database error, try again</string>
+    <string name="error_description_empty">"No items found, try again"</string>
+    <string name="error_description_network">"Network issue, check internet and try again"</string>
+
+    <string name="error_screen_refresh_btn">Refresh</string>
+</resources>
