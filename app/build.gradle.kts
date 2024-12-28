@@ -48,14 +48,6 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3.android)
     androidTestImplementation(libs.androidx.ui.test.junit4)
-    // compose
-    //val composeBom = platform("androidx.compose:compose-bom:2024.12.01")
-    //implementation(composeBom)
-    //androidTestImplementation(composeBom)
-    //implementation(libs.androidx.material3)
-    // Optional - Integration with activities
-    //implementation("androidx.activity:activity-compose:1.9.2")
-
 
     // hilt
     implementation(libs.hilt.android)
@@ -65,7 +57,6 @@ dependencies {
     kapt(libs.hilt.android.compiler)
 
     implementation(libs.androidx.lifecycle.viewmodel.compose)
-    //implementation("androidx.hilt:hilt-lifecycle-viewmodel:1.1.0")
 
     //retrofit
     implementation(libs.retrofit)
@@ -83,9 +74,6 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
-    testImplementation("io.mockk:mockk:1.13.8")
 }
 
 // Allow references to generated code
