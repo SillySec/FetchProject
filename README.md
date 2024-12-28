@@ -26,3 +26,5 @@ displaying the list to the user and handling orientation changes appropriately. 
 I created a RepoResult class to be the main source of communication throughout the app.  This is a sealed class which contains the states of Success, Error, and Loading.  Error is its own sealed class indicating the possible error states: Network, Database, and EmptyList.
 Loading is emited before we perform work and Success is emitted when the syncn is successful, and also emited with the list of items when the ViewListItemsUseCase is invoked.
 
+Another Note, the filtering of the data set to remove blanks, nulls, and order by ListId then Name is done in Room.  After saving the API result to the databse, the ViewListUseCase will pull from the Room Db using a query to have the items ordered in the state that we want already.
+
