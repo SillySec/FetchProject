@@ -6,13 +6,13 @@ This app will call an API and retrieve a list of items to display to the user.  
 My architecture was designed in a way to keep separation of concerns and allow updates with minimal disturbance to the different layers of code.  I've split the code into the Data Layer, the Domain Layer, and the UI Layer.
 
 ### Domain Layer
-The Domain layer is where I've defined what the app does.  I've abstracted it as two usecases: A case to view the list (ViewListUseCase) that returns the list of items, and a case to refresh the list (RefreshListUseCase) to get the latest list from the API and save it. 
-The work is done by interfacing with the Data Layer through the Repo Interface.  That is defined more below.
+The Domain layer is where I've defined what the app does. I've abstracted it as two usecases: A case to view the list (ViewListUseCase) that returns the list of items, and a case to refresh the list (RefreshListUseCase) to get the latest list from the API and save it. 
+The work is done by interfacing with the Data Layer through the Repo Interface. That is defined more below.
 
 ### Data Layer
 The Data Layer is the source of truth for the app. I created a Repo interface that allows the user to only do two things: get the ListItems and refresh the ListItems by calling the remoteAPI.  The concrete implementaiton of the Repo Interface
-contains a RemoteDataSource and a LocalDataSource.  These are defined as interfaces as well, with the concrete implementation being Room for the LocalDataSource and RetroFit for the RemoteDataSource.  The details of performing this work are abstracted
-away from the Domain Layer, the UseCases in the Domain layer only know to call the Repo Interface and receive their results.  The usecases are called by the UI layer which is found below
+contains a RemoteDataSource and a LocalDataSource. These are defined as interfaces as well, with the concrete implementation being Room for the LocalDataSource and RetroFit for the RemoteDataSource.  The details of performing this work are abstracted
+away from the Domain Layer, the UseCases in the Domain layer only know to call the Repo Interface and receive their results. The usecases are called by the UI layer which is found below
 
 ### UI Layer
 The UI layer consists mainly of the ViewListViewModel which will handle interfacing with the UseCases in the Domain layer and show the results to the User.  On init of the ViewModel, we make a call to refresh the list so we have the latest list when the app starts up.
@@ -24,7 +24,7 @@ displaying the list to the user and handling orientation changes appropriately. 
 
 ### Other Notes
 I created a RepoResult class to be the main source of communication throughout the app.  This is a sealed class which contains the states of Success, Error, and Loading.  Error is its own sealed class indicating the possible error states: Network, Database, and EmptyList.
-Loading is emited before we perform work and Success is emitted when the syncn is successful, and also emited with the list of items when the ViewListItemsUseCase is invoked.
+Loading is emitted before we perform work and Success is emitted when the sync is successful, and also emitted with the list of items when the ViewListItemsUseCase is invoked.
 
-Another Note, the filtering of the data set to remove blanks, nulls, and order by ListId then Name is done in Room.  After saving the API result to the databse, the ViewListUseCase will pull from the Room Db using a query to have the items ordered in the state that we want already.
+Another Note, the filtering of the data set to remove blanks, nulls, and order by ListId then Name is done in Room.  After saving the API result to the database, the ViewListUseCase will pull from the Room Db using a query to have the items ordered in the state that we want already.
 

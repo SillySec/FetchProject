@@ -3,7 +3,6 @@ package com.example.fetchproject.data.repo
 import com.example.fetchproject.data.source.local.LocalDataSource
 import com.example.fetchproject.data.source.remote.RemoteDataSource
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -32,7 +31,7 @@ class DefaultFetchRepo @Inject constructor(
                 }.collect { result -> emit(result) }
         } catch (e: Exception) {
             // database error
-            emit(RepoResult.Error.Database(Exception("Room DB error, try again")))
+            emit(RepoResult.Error.Database(e))
         }
     }
 
@@ -48,7 +47,7 @@ class DefaultFetchRepo @Inject constructor(
             localDataSource.setListItems(remoteItems)
             return RepoResult.Success(Unit)
         } catch (e: Exception) {
-            return RepoResult.Error.Network(Exception("Network error, check internet and try again"))
+            return RepoResult.Error.Network(e)
         }
     }
 
